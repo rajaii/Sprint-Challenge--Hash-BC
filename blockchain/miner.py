@@ -7,7 +7,7 @@ from uuid import uuid4
 
 from timeit import default_timer as timer
 
-import random
+import random 
 
 
 def proof_of_work(last_proof):
@@ -19,15 +19,27 @@ def proof_of_work(last_proof):
     - p is the previous proof, and p' is the new proof
     - Use the same method to generate SHA-256 hashes as the examples in class
     """
-
     start = timer()
-
     print("Searching for next proof")
+    block_string = hashlib.sha256(f"{last_proof}".encode()).hexdigest()
     proof = 0
-    #  TODO: Your code here
-
+    while not valid_proof(block_string, proof):
+        proof += random.random()
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
+
     return proof
+    # start = timer()
+
+    # print("Searching for next proof")
+    # block_string = json.dumps(last_proof, sort_keys=True)
+    # proof = 0
+    # while not valid_proof(block_string, proof):
+    #     proof += 1
+
+    
+
+    # print("Proof found: " + str(proof) + " in " + str(timer() - start))
+    # return proof
 
 
 def valid_proof(last_hash, proof):
@@ -39,8 +51,11 @@ def valid_proof(last_hash, proof):
     IE:  last_hash: ...AE912345, new hash 12345E88...
     """
 
-    # TODO: Your code here!
-    pass
+    
+    guess = f"{last_hash}{proof}".encode()
+    guess_hash = hashlib.sha256(guess).hexdigest()
+    return guess_hash[:6] == last_hash[-6:]
+
 
 
 if __name__ == '__main__':

@@ -1,0 +1,11 @@
+Proof 
+ 
+ - Find a number p' such that the last five digits of hash(p) are equal
+    to the first five digits of hash(p')
+    - IE:  last_hash: ...AE912345, new hash 12345BA8...
+    - p is the previous proof, and p' is the new proof
+
+
+command to run legit server
+python3 miner.py https://lambda-coin-test-1.herokuapp.com/ap
+

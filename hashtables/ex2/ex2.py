@@ -20,4 +20,22 @@ def reconstruct_trip(tickets, length):
     YOUR CODE HERE
     """
 
-    pass
+    #push values in ht
+    for i in tickets:
+        hash_table_insert(hashtable, i.source, i.destination)
+        print(f'inserted: <{i.source}, {i.destination}>')
+    route = []
+
+    for i in range(len(hashtable.storage)-1):
+        if hashtable.storage[i] is not None:
+            if hashtable.storage[i].key == 'NONE':
+                route.append(hashtable.storage[i].value)
+                route.append(hash_table_retrieve(hashtable, hashtable.storage[i].value))
+    for i in range(length-2):
+        if i == 0:
+            continue
+        route.append(hash_table_retrieve(hashtable, route[i]))
+        
+    
+
+    return route
