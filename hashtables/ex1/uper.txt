@@ -1,0 +1,14 @@
+return Answer tuple that has wights of 2 packages that add up to limit
+
+one loop
+ht 
+{weight: wieghts list index}
+if the hash of limit - weight is in there we found it
+
+loop through weights and insert them into ht
+insert(weight, i)
+
+search ht for limit - weight
+
+return (ht[limit - weight], ht[weight]) put higher one first
+len(hash_table.storage)
